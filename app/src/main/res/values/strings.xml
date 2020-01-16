@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">drawApp</string>
+    <string name="newFile">New</string>
+    <string name="brush">Brush</string>
+    <string name="erase">Eraser</string>
+    <string name="save">Save</string>
+    <string name="color">Color</string>
+    <string name="sml">Small</string>
+    <string name="med">Medium</string>
+    <string name="lrg">Large</string>
+</resources>

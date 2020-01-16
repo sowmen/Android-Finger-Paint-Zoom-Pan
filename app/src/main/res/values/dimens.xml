@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="smallBrush">10dp</dimen>
+    <integer name="smallSize">10</integer>
+
+    <dimen name="mediumBrush">15dp</dimen>
+    <integer name="mediumSize">15</integer>
+
+    <dimen name="largeBrush">20dp</dimen>
+    <integer name="largeSize">20</integer>
+</resources>
