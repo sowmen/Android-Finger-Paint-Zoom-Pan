@@ -211,6 +211,9 @@ public class DrawView extends View
                 this.addPath(true);
                 drawCanvas.drawPath(drawPath, drawPaint);
                 drawPath.reset();
+                undonePaths.clear();
+                undonePaints.clear();
+                MainActivity.redoBtn.setEnabled(false);
                 invalidate();
                 break;
             default:
@@ -223,7 +226,6 @@ public class DrawView extends View
     public void changeBrushSize(int size) {
         currentBrushSize = size;
         invalidate();
-
     }
 
     public int getPaintColor() {

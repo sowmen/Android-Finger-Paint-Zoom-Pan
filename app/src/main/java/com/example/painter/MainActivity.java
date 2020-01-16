@@ -22,7 +22,8 @@ import androidx.core.content.res.ResourcesCompat;
 public class MainActivity extends AppCompatActivity implements OnClickListener
 {
     private DrawView draw;
-    private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, redoBtn, undoBtn;
+    private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn;
+    static ImageButton redoBtn, undoBtn;
     private float smallBrush, mediumBrush, largeBrush;
 
     @Override
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
         undoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                redoBtn.setEnabled(true);
                 draw.onClickUndo();
             }
         });
