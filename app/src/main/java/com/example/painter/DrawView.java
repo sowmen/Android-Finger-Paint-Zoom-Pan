@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Toast;
 
@@ -53,9 +54,27 @@ public class DrawView extends View
     public boolean flagline = false;
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
 
+    private static float MIN_ZOOM = 1f;
+    private static float MAX_ZOOM = 5f;
+
+    private float scaleFactor = 1.f;
+    private ScaleGestureDetector detector;
+
+
     public DrawView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setupDraw();
+        detector = new ScaleGestureDetector(getContext(), new ScaleListener());
+    }
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            scaleFactor *= detector.getScaleFactor();
+            scaleFactor = Math.max(MIN_ZOOM, Math.min(scaleFactor, MAX_ZOOM));
+            invalidate();
+            return true;
+        }
     }
 
     public void startNew() {
@@ -111,6 +130,7 @@ public class DrawView extends View
     }
 
     public void setErase(boolean isErase) {
+        this.setColor("#FFFFFF");
         erase = isErase;
 
         if (erase)
@@ -128,6 +148,9 @@ public class DrawView extends View
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        canvas.save();
+        canvas.scale(scaleFactor, scaleFactor);
+
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
 //        canvas.drawPath(drawPath, drawPaint);
 
@@ -135,6 +158,8 @@ public class DrawView extends View
             canvas.drawPath(mPaths.get(i), mPaints.get(i));
             invalidate();
         }
+
+        canvas.restore();
     }
 
     private void addPath(boolean fill)
@@ -190,6 +215,8 @@ public class DrawView extends View
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        detector.onTouchEvent(event);
 
         float touchX = event.getX();
         float touchY = event.getY();

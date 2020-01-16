@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">drawApp</string>
+    <string name="app_name">Painter</string>
     <string name="newFile">New</string>
     <string name="brush">Brush</string>
     <string name="erase">Eraser</string>
