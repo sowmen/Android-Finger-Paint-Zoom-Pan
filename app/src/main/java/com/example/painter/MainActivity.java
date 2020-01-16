@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
                 @Override
                 public void onClick(View v) {
                     draw.setErase(true);
-                    draw.setBrushSize(smallBrush);
+                    draw.changeBrushSize((int)smallBrush);
                     brushDialog.dismiss();
                 }
             });
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
                 @Override
                 public void onClick(View v) {
                     draw.setErase(true);
-                    draw.setBrushSize(mediumBrush);
+                    draw.changeBrushSize((int)mediumBrush);
                     brushDialog.dismiss();
                 }
             });
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
                 @Override
                 public void onClick(View v) {
                     draw.setErase(true);
-                    draw.setBrushSize(largeBrush);
+                    draw.changeBrushSize((int)largeBrush);
                     brushDialog.dismiss();
                 }
             });
