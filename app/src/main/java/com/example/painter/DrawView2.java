@@ -31,7 +31,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class DrawView extends View
+public class DrawView2 extends View
 {
     //public vars
     public Bitmap canvasBitmap;
@@ -45,7 +45,6 @@ public class DrawView extends View
     private boolean erase = false;
 
     private Integer currentBrushSize = 5;
-    private DrawView drawView;
     private ArrayList<Path> mPaths;
     private ArrayList<Path> undonePaths = new ArrayList<>();
     private ArrayList<Paint> undonePaints = new ArrayList<>();
@@ -61,7 +60,7 @@ public class DrawView extends View
     private ScaleGestureDetector detector;
 
 
-    public DrawView(Context context, AttributeSet attrs) {
+    public DrawView2(Context context, AttributeSet attrs) {
         super(context, attrs);
         setupDraw();
         detector = new ScaleGestureDetector(getContext(), new ScaleListener());
