@@ -63,7 +63,12 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
                     }
                 })
     }
-
+    fun reset(){
+        mUndonePaths.clear()
+        mPaths.clear()
+        mLastPaths.clear()
+        clearCanvas()
+    }
     fun undo() {
         if (mPaths.isEmpty() && mLastPaths.isNotEmpty()) {
             mPaths = mLastPaths.clone() as LinkedHashMap<MyPath, PaintOptions>

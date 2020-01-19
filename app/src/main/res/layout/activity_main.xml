@@ -8,51 +8,137 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/draw_tools"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-<!--        <ImageButton-->
-<!--            android:id="@+id/newBtn"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="fill_parent"-->
-<!--            android:contentDescription="@string/newFile"-->
-<!--            android:src="@drawable/new_pic" />-->
+        android:background="#353639"
+        android:elevation="3dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:translationY="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:layout_margin="2dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/brushBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/brush"
+            android:id="@+id/image_draw_eraser"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:background="@null"
-            android:src="@drawable/ic_brush_black_24dp" />
+            android:foreground="?selectableItemBackground"
+            android:onClick="onClick"
 
-        <ImageButton
-            android:layout_margin="2dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/eraseBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/erase"
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
             android:src="@drawable/ic_clean"
-            android:background="@null"/>
+            android:tint="@color/icon_color"
+            app:layout_constraintEnd_toStartOf="@+id/image_draw_brush"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:layout_margin="2dp"
-            android:id="@+id/saveBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/save"
+            android:id="@+id/image_draw_brush"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:background="@null"
-            android:src="@drawable/ic_save_black_24dp" />
+            android:foreground="?selectableItemBackground"
+            android:onClick="onClick"
 
-    </LinearLayout>
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_brush_black_24dp"
+            android:tint="@color/icon_color"
+            app:layout_constraintEnd_toStartOf="@+id/image_draw_width"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/image_draw_width"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:foreground="?selectableItemBackground"
+
+            android:onClick="onClick"
+
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_adjust_black_24dp"
+            android:tint="@color/icon_color"
+            app:layout_constraintEnd_toStartOf="@+id/image_draw_color"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/image_draw_color"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@null"
+            android:foreground="?selectableItemBackground"
+            android:onClick="onClick"
+
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_color_lens_black_24dp"
+            android:tint="@color/icon_color"
+            app:layout_constraintEnd_toStartOf="@+id/image_draw_undo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/image_draw_undo"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@null"
+            android:foreground="?selectableItemBackground"
+            android:onClick="onClick"
+
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_undo_black_24dp"
+            android:tint="@color/icon_color"
+            app:layout_constraintEnd_toStartOf="@+id/image_draw_redo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/image_draw_redo"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@null"
+            android:foreground="?selectableItemBackground"
+            android:onClick="onClick"
+
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_redo_black_24dp"
+            android:tint="@color/icon_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SeekBar
+            android:id="@+id/seekBar_width"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:progress="8"
+            app:layout_constraintEnd_toStartOf="@+id/circle_view_preview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_draw_eraser" />
+
+        <com.divyanshu.draw.widget.CircleView
+            android:id="@+id/circle_view_preview"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_draw_eraser" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.divyanshu.draw.widget.DrawView
         android:id="@+id/drawing"
@@ -60,107 +146,120 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/viewBackground"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        />
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-16dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="31dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="#353639"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <LinearLayout
-            android:id="@+id/colors"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:layout_width="@dimen/largeBrush"
-                android:layout_height="@dimen/largeBrush"
-                android:layout_margin="2dp"
-                android:background="#FF660000"
-                android:contentDescription="@string/color"
-                android:onClick="colorClicked"
-                android:src="@drawable/paint"
-                android:tag="#FF660000" />
 
-            <ImageButton
-                android:layout_width="@dimen/largeBrush"
-                android:layout_height="@dimen/largeBrush"
-                android:layout_margin="2dp"
-                android:background="#FFFF0000"
-                android:contentDescription="@string/color"
-                android:onClick="colorClicked"
-                android:src="@drawable/paint"
-                android:tag="#FFFF0000" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2">
 
-            <ImageButton
-                android:layout_width="@dimen/largeBrush"
-                android:layout_height="@dimen/largeBrush"
-                android:layout_margin="2dp"
-                android:background="#FFFF6600"
-                android:contentDescription="@string/color"
-                android:onClick="colorClicked"
-                android:src="@drawable/paint"
-                android:tag="#FFFF6600" />
+                <at.markushi.ui.CircleButton
+                    android:id="@+id/color1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:cb_color="#99CC00" />
+            </FrameLayout>
 
-            <ImageButton
-                android:layout_width="@dimen/largeBrush"
-                android:layout_height="@dimen/largeBrush"
-                android:layout_margin="2dp"
-                android:background="#FFFFCC00"
-                android:contentDescription="@string/color"
-                android:onClick="colorClicked"
-                android:src="@drawable/paint"
-                android:tag="#FFFFCC00" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp">
 
-            <ImageButton
-                android:layout_width="@dimen/largeBrush"
-                android:layout_height="@dimen/largeBrush"
-                android:layout_margin="2dp"
-                android:background="#FF009900"
-                android:contentDescription="@string/color"
-                android:onClick="colorClicked"
-                android:src="@drawable/paint"
-                android:tag="#FF009900" />
+                <at.markushi.ui.CircleButton
+                    android:id="@+id/color2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:cb_color="#99CC00" />
+            </FrameLayout>
 
-            <ImageButton
-                android:layout_width="@dimen/largeBrush"
-                android:layout_height="@dimen/largeBrush"
-                android:layout_margin="2dp"
-                android:background="#FF009999"
-                android:contentDescription="@string/color"
-                android:onClick="colorClicked"
-                android:src="@drawable/paint"
-                android:tag="#FF009999" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp">
+
+                <at.markushi.ui.CircleButton
+                    android:id="@+id/color3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:cb_color="#99CC00" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp">
+
+                <at.markushi.ui.CircleButton
+                    android:id="@+id/color4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:cb_color="#99CC00" />
+            </FrameLayout>
+
+
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/undoBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/newBtn"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:background="@null"
-            android:src="@drawable/undo"
-            app:layout_constraintEnd_toStartOf="@+id/redoBtn"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="2dp" />
+            android:foreground="?selectableItemBackground"
+            android:onClick="onClick"
+            android:paddingLeft="16dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/new_add"
+            android:tint="@color/icon_color"
+            app:layout_constraintEnd_toStartOf="@+id/saveBtn"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/redoBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/saveBtn"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:background="@null"
-            android:src="@drawable/redo"
+            android:foreground="?selectableItemBackground"
+            android:onClick="onClick"
+            android:paddingTop="10dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_save_black_24dp"
+            android:tint="@color/icon_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="5dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
