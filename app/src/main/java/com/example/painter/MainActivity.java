@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     static ImageButton redoBtn, undoBtn;
     private float smallBrush, mediumBrush, largeBrush;
 
-    Color currentColor;
+    int currentColor;
     private View toolbar;
     private CircleView preview;
     private SeekBar seekBarWidth;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         colorSelect = findViewById(R.id.image_draw_color);
         colorSelect.setOnClickListener(this);
-        currentColor = Color.valueOf(Color.BLACK);
+        currentColor = Color.BLACK;
 
         smallBrush = getResources().getInteger(R.integer.smallSize);
         mediumBrush = getResources().getInteger(R.integer.mediumSize);
@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             toggleToolbar();
         }
         else if(view.getId() == R.id.image_draw_brush){
-            draw.setColor(currentColor.toArgb());
-            preview.setColor(currentColor.toArgb());
+            draw.setColor(currentColor);
+            preview.setColor(currentColor);
         }
         else if (view.getId() == R.id.image_draw_eraser) {
             draw.setColor(Color.WHITE);
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                     .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
                     .setAllowPresets(false)
                     .setDialogId(DIALOG_ID)
-                    .setColor(currentColor.toArgb())
+                    .setColor(currentColor)
                     .setShowAlphaSlider(true)
                     .show(this);
         }
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             case DIALOG_ID:
                 // We got result from the dialog that is shown when clicking on the icon in the action bar.
 
-                currentColor = Color.valueOf(color);
+                currentColor = color;
                 draw.setColor(color);
                 int alpha = (color >> 24) & 0x000000FF;
                 Log.d("Alpha",color+" "+alpha);
