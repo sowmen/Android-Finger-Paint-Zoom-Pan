@@ -3,7 +3,6 @@ package com.example.painter;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -17,21 +16,15 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.divyanshu.draw.widget.CircleView;
 import com.divyanshu.draw.widget.DrawView;
-import com.flask.colorpicker.ColorPickerView;
-import com.flask.colorpicker.OnColorSelectedListener;
-import com.flask.colorpicker.builder.ColorPickerClickListener;
-import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
@@ -63,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        draw = (DrawView) findViewById(R.id.drawing);
+        draw = findViewById(R.id.drawing);
 
         colorSelect = findViewById(R.id.image_draw_color);
         colorSelect.setOnClickListener(this);
@@ -146,32 +139,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             preview.setColor(Color.WHITE);
         }
         else if(view.getId() == R.id.image_draw_color){
-//            ColorPickerDialogBuilder
-//                    .with(getApplicationContext())
-//                    .setTitle("Choose color")
-//                    .initialColor(currentColor.toArgb())
-//                    .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-//                    .density(12)
-//                    .setOnColorSelectedListener(new OnColorSelectedListener() {
-//                        @Override
-//                        public void onColorSelected(int selectedColor) {
-//                            Toast.makeText(getApplicationContext(), "onColorSelected: 0x" + Integer.toHexString(selectedColor), Toast.LENGTH_SHORT).show();
-//                        }
-//                    })
-//                    .setPositiveButton("ok", new ColorPickerClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-//                            currentColor = Color.valueOf(selectedColor);
-//                            draw.setColor(currentColor.toArgb());
-//                        }
-//                    })
-//                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                        }
-//                    })
-//                    .build()
-//                    .show();
             ColorPickerDialog.newBuilder()
                     .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
                     .setAllowPresets(false)
@@ -184,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         {
             AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
             newDialog.setTitle("New Drawing");
-            newDialog.setMessage("Start a new_img drawing? (This will erase your current drawing.)");
+            newDialog.setMessage("Start a new drawing? (This will erase your current drawing.)");
             newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -231,8 +198,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         switch (dialogId) {
             case DIALOG_ID:
                 // We got result from the dialog that is shown when clicking on the icon in the action bar.
+
                 currentColor = Color.valueOf(color);
                 draw.setColor(color);
+                int alpha = (color >> 24) & 0x000000FF;
+                Log.d("Alpha",color+" "+alpha);
+                draw.setAlpha(alpha);
 
                 break;
         }

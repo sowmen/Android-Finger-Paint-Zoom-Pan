@@ -3,6 +3,7 @@ package com.divyanshu.draw.widget
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -101,6 +102,8 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     fun setColor(newColor: Int) {
+
+        Log.d("alpha", mPaintOptions.alpha.toString());
         @ColorInt
         val alphaColor = ColorUtils.setAlphaComponent(newColor, mPaintOptions.alpha)
         mPaintOptions.color = alphaColor
@@ -109,8 +112,9 @@ class DrawView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         }
     }
 
+
     fun setAlpha(newAlpha: Int) {
-        val alpha = (newAlpha*255)/100
+        val alpha = newAlpha
         mPaintOptions.alpha = alpha
         setColor(mPaintOptions.color)
     }
